@@ -32,7 +32,12 @@ io.on("connection", (socket) => {
 });
 
 // ================= MIDDLEWARE =================
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // later we restrict to frontend URL
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  }),
+);
 app.use(express.json());
 
 // ================= DB =================
@@ -137,7 +142,9 @@ app.get("/contact/unread/count", async (req, res) => {
     res.status(500).json({ error: "Failed to get unread count" });
   }
 });
-
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 // ================= TEST EMAIL =================
 app.get("/test-email", async (req, res) => {
   try {
@@ -155,7 +162,8 @@ app.get("/test-email", async (req, res) => {
 });
 
 // ================= SERVER START =================
-const PORT = 5000;
-server.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
