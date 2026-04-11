@@ -79,18 +79,30 @@ app.post("/contact", async (req, res) => {
 
     await newMessage.save();
 
-    // 📩 EMAIL
-    await transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: `New message from ${name}`,
-      html: `
-        <h3>New Contact Message</h3>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Message:</b> ${message}</p>
-      `,
-    });
+    // 🔥 SEND EMAIL IN BACKGROUND (NO WAIT)
+    transporter
+      .sendMail({
+        from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_USER,
+        subject: `New message from ${name}`,
+        html: `
+          <h3>New Contact Message</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message}</p>
+        `,
+      })
+      .then(() => console.log("Email sent"))
+      .catch((err) => console.error("Email error:", err));
+
+    // ✅ respond immediately
+    res.json({ message: "Message saved successfully!" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
 
     // ================= REAL-TIME EMIT =================
     io.emit("new_message", newMessage);
