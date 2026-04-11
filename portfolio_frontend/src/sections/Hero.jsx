@@ -88,14 +88,18 @@ export const Hero = () => {
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
 
-              <AnimatedBorderButton
-                as="a"
-                href="/Kiros_Asefa_CV_2026.pdf"
-                download
+              <a
+                href="/Kiros_Asefa_CV.pdf"
+                download="Kiros_Asefa_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
               >
-                <Download className="w-5 h-5" />
-                Download CV
-              </AnimatedBorderButton>
+                <AnimatedBorderButton>
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </AnimatedBorderButton>
+              </a>
             </div>
 
             {/* SOCIALS */}
