@@ -1,0 +1,166 @@
+# 🌐 Personal Portfolio Project
+
+A full-stack personal portfolio website with an admin dashboard, real-time notifications, and contact management system.
+
+---
+
+## 🚀 Live Demo
+
+* 🌍 Frontend: https://personal_kiki_portfolio.vercel.app
+* 🔧 Backend: https://personal_kiki_portfolio.onrender.com
+
+---
+
+## ✨ Features
+
+### 👨‍💻 Portfolio Website
+
+* Modern responsive UI
+* About, Skills, Projects sections
+* Contact form
+
+### 📩 Contact System
+
+* Users can send messages
+* Messages stored in MongoDB
+* Email notifications via Nodemailer
+
+### 🛠 Admin Dashboard
+
+* View all messages
+* Delete messages
+* Mark messages as read
+* Unread message counter
+
+### 🔔 Real-Time Features
+
+* Live message updates using Socket.IO
+* Instant notifications
+* Real-time delete sync
+
+### 📧 Reply System
+
+* One-click reply via Gmail integration
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+
+* React (Vite)
+* Tailwind CSS
+* React Icons
+* Socket.IO Client
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB (Mongoose)
+* Socket.IO
+* Nodemailer
+
+---
+
+## 📂 Project Structure
+
+```
+personal_portfolio_project/
+│
+├── backend/        # Express + MongoDB API
+├── frontend/       # React app (Vite)
+└── README.md       # Main documentation
+```
+
+---
+
+## ⚙️ Installation (Local Setup)
+
+### 1️⃣ Clone Repository
+
+```
+git clone https://github.com/kikikatg/personal_portfolio-using-react.git
+cd personal_portfolio_project
+```
+
+---
+
+### 2️⃣ Backend Setup
+
+```
+cd backend
+npm install
+```
+
+Create `.env`:
+
+```
+MONGO_URI=mongodb_uri
+EMAIL_USER=kiru.katg@gmail.com
+EMAIL_PASS=*********
+```
+
+Run backend:
+
+```
+npm start
+```
+
+---
+
+### 3️⃣ Frontend Setup
+
+```
+cd frontend
+npm install
+```
+
+Create `.env`:
+
+```
+VITE_API_URL=http://localhost:5000
+```
+
+Run frontend:
+
+```
+npm run dev
+```
+
+---
+
+## 🔐 Environment Variables
+
+| Variable     | Description            |
+| ------------ | ---------------------- |
+| MONGO_URI    | MongoDB connection URL |
+| EMAIL_USER   | Gmail address          |
+| EMAIL_PASS   | Gmail app password     |
+| VITE_API_URL | Backend API URL        |
+
+---
+
+
+
+---
+
+## 🎯 Future Improvements
+
+* Push notifications 🔔
+* Admin chat system 💬
+* Analytics dashboard 📊
+* User authentication 🔐
+
+---
+
+## 👤 Author
+
+**Kiros Asefa**
+Computer Science & Engineering Student
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a star ⭐ on GitHub!

@@ -4,6 +4,13 @@ const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
   message: String,
+
+  // ✅ NEW FIELD (DO NOT BREAK EXISTING DATA)
+  isRead: {
+    type: Boolean,
+    default: false,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

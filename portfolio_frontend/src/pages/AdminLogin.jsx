@@ -3,17 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 export const AdminLogin = () => {
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // 🔐 Simple password check
     if (password === "admin123") {
       localStorage.setItem("isAdmin", "true");
+      setError("");
       navigate("/admin");
     } else {
-      alert("Wrong password");
+      setError("Wrong password. Try again!");
     }
   };
 
@@ -21,7 +22,7 @@ export const AdminLogin = () => {
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
       <form
         onSubmit={handleLogin}
-        className="bg-white/10 p-8 rounded-xl space-y-4"
+        className="bg-white/10 p-8 rounded-xl space-y-4 w-[300px]"
       >
         <h2 className="text-2xl font-bold text-center">Admin Login</h2>
 
@@ -32,6 +33,8 @@ export const AdminLogin = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full px-4 py-2 rounded bg-black border border-gray-600"
         />
+
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
         <button
           type="submit"
