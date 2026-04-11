@@ -88,7 +88,16 @@ export const Admin = () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`);
       const data = await res.json();
+
       setMessages(data);
+
+      // 🔥 ADD INITIAL NOTIFICATIONS
+      setNotifications(
+        data.slice(0, 3).map((msg) => ({
+          text: `Message from ${msg.name}`,
+          time: new Date(msg.createdAt).toLocaleTimeString(),
+        })),
+      );
     } catch {
       setError("Failed to load messages");
     } finally {
@@ -116,6 +125,14 @@ export const Admin = () => {
 
     setUnreadCount((prev) => Math.max(prev - 1, 0));
 
+    setNotifications((prev) => [
+      {
+        text: `Opened message from ${msg.name}`,
+        time: new Date().toLocaleTimeString(),
+      },
+      ...prev,
+    ]);
+
     try {
       await fetch(`${import.meta.env.VITE_API_URL}/contact/${msg._id}/read`, {
         method: "PATCH",
@@ -125,41 +142,54 @@ export const Admin = () => {
 
   // ================= DELETE =================
   const deleteMessage = async () => {
+    if (!deleteTarget) return;
+
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/contact/${deleteTarget}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/contact/${deleteTarget}`,
+        { method: "DELETE" },
+      );
+
+      if (!res.ok) throw new Error();
+
+      // 🔥 FIX: REMOVE FROM UI IMMEDIATELY
+      setMessages((prev) => prev.filter((m) => m._id !== deleteTarget));
+
+      setNotifications((prev) => [
+        {
+          text: `Deleted a message`,
+          time: new Date().toLocaleTimeString(),
+        },
+        ...prev,
+      ]);
 
       setDeleteTarget(null);
       setSelectedMessage(null);
+
+      fetchUnreadCount();
     } catch {
       setError("Delete failed");
     }
   };
 
-  // ================= FIXED REPLY =================
+  // ================= REPLY =================
   const handleReply = () => {
     if (!selectedMessage) return;
 
-    const email = selectedMessage.email;
-    const name = selectedMessage.name;
-    const msg = selectedMessage.message;
-
     const subject = encodeURIComponent("Reply to your message");
     const body = encodeURIComponent(
-      `Hi ${name},
+      `Hi ${selectedMessage.name},
 
 I reviewed your message:
 
-"${msg}"
+"${selectedMessage.message}"
 
 ---
 
 Reply from Admin Panel`,
     );
 
-    // ✅ OPEN GMAIL IN CHROME DIRECTLY
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${selectedMessage.email}&su=${subject}&body=${body}`;
 
     window.open(gmailUrl, "_blank");
   };
@@ -170,15 +200,13 @@ Reply from Admin Panel`,
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      {/* ================= SIDEBAR ================= */}
-      <div className="w-46 bg-white/5 border-r border-white/10 p-5 flex flex-col justify-between">
-        <div>
-          <h2 className="text-xl font-bold mb-6">Admin Panel</h2>
-
+    <div className="flex flex-col md:flex-row min-h-screen bg-black text-white">
+      {/* SIDEBAR */}
+      <div className="md:w-60 bg-white/5 border-r border-white/10 p-5 flex flex-row md:flex-col justify-between">
+        <div className="flex md:flex-col gap-3 w-full">
           <button
             onClick={() => setActiveTab("inbox")}
-            className={`flex items-center gap-2 w-full p-2 rounded ${
+            className={`flex items-center gap-2 p-2 rounded ${
               activeTab === "inbox" ? "bg-blue-600" : "hover:bg-white/10"
             }`}
           >
@@ -193,7 +221,7 @@ Reply from Admin Panel`,
 
           <button
             onClick={() => setActiveTab("notifications")}
-            className={`flex items-center gap-2 w-full p-2 rounded mt-2 ${
+            className={`flex items-center gap-2 p-2 rounded ${
               activeTab === "notifications"
                 ? "bg-blue-600"
                 : "hover:bg-white/10"
@@ -205,112 +233,95 @@ Reply from Admin Panel`,
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 bg-red-600 p-2 rounded"
+          className="bg-red-600 px-3 py-2 rounded flex items-center gap-2"
         >
           <FaSignOutAlt /> Logout
         </button>
       </div>
 
-      {/* ================= MAIN ================= */}
-      <div className="flex-1 p-10">
+      {/* MAIN */}
+      <div className="flex-1 p-4 md:p-10">
         {isLoading ? (
           <div className="flex justify-center">
             <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : (
           <>
-            {/* ================= INBOX ================= */}
             {activeTab === "inbox" && (
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 {/* LIST */}
                 <div className="space-y-3">
                   {messages.map((msg) => (
                     <div
                       key={msg._id}
                       onClick={() => openMessage(msg)}
-                      className="p-4 rounded cursor-pointer bg-white/5 hover:bg-white/10"
+                      className="p-4 rounded bg-white/5 hover:bg-white/10 cursor-pointer"
                     >
-                      <div className="flex items-center gap-2">
-                        <FaUser className="text-blue-400" />
-                        <span>{msg.name}</span>
-                      </div>
-                      <p className="text-sm text-gray-400 flex items-center gap-2">
-                        <FaEnvelope className="text-gray-500" />
-                        {msg.email}
+                      <p className="flex items-center gap-2">
+                        <FaUser /> {msg.name}
+                      </p>
+                      <p className="text-sm text-gray-400 flex gap-2">
+                        <FaEnvelope /> {msg.email}
                       </p>
                     </div>
                   ))}
                 </div>
 
-                {/* DETAILS (RESTORED FULL UI + ICONS) */}
-                <div className="bg-white/5 p-6 rounded-xl">
+                {/* DETAILS */}
+                <div className="bg-white/5 p-4 rounded-xl max-h-[70vh] overflow-y-auto">
                   {selectedMessage ? (
                     <>
-                      <h2 className="text-xl font-bold mb-4">
-                        Message Details
-                      </h2>
-
-                      <p className="flex items-center gap-2">
-                        <FaUser className="text-blue-400" />
-                        {selectedMessage.name}
+                      <p className="flex gap-2">
+                        <FaUser /> {selectedMessage.name}
                       </p>
-
-                      <p className="flex items-center gap-2 mt-2 text-gray-400">
-                        <FaEnvelope />
-                        {selectedMessage.email}
+                      <p className="flex gap-2 mt-2">
+                        <FaEnvelope /> {selectedMessage.email}
                       </p>
-
-                      <p className="flex items-start gap-2 mt-4">
-                        <FaCommentDots className="text-green-400 mt-1" />
-                        {selectedMessage.message}
+                      <p className="flex gap-2 mt-4">
+                        <FaCommentDots /> {selectedMessage.message}
                       </p>
-
-                      <p className="flex items-center gap-2 mt-4 text-xs text-gray-500">
+                      <p className="flex gap-2 mt-4 text-xs">
                         <FaCalendarAlt />
                         {new Date(selectedMessage.createdAt).toLocaleString()}
                       </p>
 
-                      <div className="flex gap-3 mt-6">
+                      <div className="flex gap-3 mt-6 flex-wrap">
                         <button
                           onClick={handleReply}
-                          className="bg-blue-600 px-4 py-2 rounded flex items-center gap-2"
+                          className="bg-blue-600 px-4 py-2 rounded flex gap-2"
                         >
                           <FaReply /> Reply
                         </button>
 
                         <button
                           onClick={() => setDeleteTarget(selectedMessage._id)}
-                          className="bg-red-600 px-4 py-2 rounded flex items-center gap-2"
+                          className="bg-red-600 px-4 py-2 rounded flex gap-2"
                         >
                           <FaTrash /> Delete
                         </button>
                       </div>
                     </>
                   ) : (
-                    <p className="text-gray-400">Select a message</p>
+                    <p>Select a message</p>
                   )}
                 </div>
               </div>
             )}
 
-            {/* ================= NOTIFICATIONS FIXED ================= */}
+            {/* NOTIFICATIONS */}
             {activeTab === "notifications" && (
               <div>
-                <h2 className="text-2xl font-bold mb-4">Notifications</h2>
+                <h2 className="text-xl mb-4">Notifications</h2>
 
                 {notifications.length === 0 ? (
-                  <div className="bg-green-500/10 p-4 rounded">
-                    📩 No notifications yet
-                  </div>
+                  <p>No notifications</p>
                 ) : (
-                  <div className="space-y-3">
-                    {notifications.map((n, i) => (
-                      <div key={i} className="bg-white/5 p-3 rounded">
-                        <p>{n.text}</p>
-                        <span className="text-xs text-gray-400">{n.time}</span>
-                      </div>
-                    ))}
-                  </div>
+                  notifications.map((n, i) => (
+                    <div key={i} className="bg-white/5 p-3 rounded mb-2">
+                      <p>{n.text}</p>
+                      <span className="text-xs text-gray-400">{n.time}</span>
+                    </div>
+                  ))
                 )}
               </div>
             )}
@@ -318,26 +329,21 @@ Reply from Admin Panel`,
         )}
       </div>
 
-      {/* ================= DELETE MODAL ================= */}
-      {/* ================= DELETE MODAL ================= */}
+      {/* DELETE MODAL */}
       {deleteTarget && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white/10 p-6 rounded-xl text-center space-y-4 w-[300px]">
-            <p>Are you sure you want to delete this message?</p>
-
-            <div className="flex justify-center gap-4">
-              {/* ✅ CANCEL BUTTON (RESTORED) */}
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center">
+          <div className="bg-white/10 p-6 rounded">
+            <p>Are you sure?</p>
+            <div className="flex gap-4 mt-4">
               <button
                 onClick={() => setDeleteTarget(null)}
-                className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-500 transition"
+                className="bg-gray-600 px-4 py-2 rounded"
               >
                 Cancel
               </button>
-
-              {/* DELETE BUTTON */}
               <button
                 onClick={deleteMessage}
-                className="px-4 py-2 bg-red-600 rounded hover:bg-red-700 transition"
+                className="bg-red-600 px-4 py-2 rounded"
               >
                 Delete
               </button>
