@@ -66,13 +66,17 @@ export const About = () => {
               <p>
                 I specialize in{" "}
                 <span className="text-white font-medium">
-                  React,JavaScript, HTML,and Tailwind CSS
+                  React, JavaScript, HTML, and Tailwind CSS
                 </span>{" "}
                 for frontend development, while also working with{" "}
                 <span className="text-white font-medium">
+                  Node.js, Express.js, and MongoDB
+                </span>{" "}
+                on the backend. Additionally, I build intelligent systems using{" "}
+                <span className="text-white font-medium">
                   Python, Machine Learning, and NLP
                 </span>{" "}
-                to create smart solutions.
+                to create smart, scalable, and real-world solutions.
               </p>
 
               <p>
