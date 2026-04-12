@@ -54,7 +54,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
-
 // ================= GET CONTACTS =================
 app.get("/contact", async (req, res) => {
   try {
@@ -79,40 +78,37 @@ app.post("/contact", async (req, res) => {
 
     await newMessage.save();
 
-    // 🔥 SEND EMAIL IN BACKGROUND (NO WAIT)
-    transporter
-      .sendMail({
-        from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-        to: process.env.EMAIL_USER,
-        subject: `New message from ${name}`,
-        html: `
-          <h3>New Contact Message</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong> ${message}</p>
-        `,
-      })
-      .then(() => console.log("Email sent"))
-      .catch((err) => console.error("Email error:", err));
+    // ✅ respond instantly (NO DELAY EVER AGAIN)
+    res.status(200).json({
+      success: true,
+      message: "Saved successfully",
+    });
 
-    // ✅ respond immediately
-    res.json({ message: "Message saved successfully!" });
+    // ✅ send email in background (clean + safe)
+    setTimeout(async () => {
+      try {
+        await transporter.sendMail({
+          from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
+          to: process.env.EMAIL_USER,
+          subject: `New message from ${name}`,
+          html: `
+            <h3>New Contact Message</h3>
+            <p><b>Name:</b> ${name}</p>
+            <p><b>Email:</b> ${email}</p>
+            <p><b>Message:</b> ${message}</p>
+          `,
+        });
 
+        console.log("✅ Email sent");
+      } catch (err) {
+        console.log("❌ Email error:", err.message);
+      }
+    }, 0);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server error");
+    res.status(500).json({ message: "Server error" });
   }
 });
-
-    // ================= REAL-TIME EMIT =================
-    io.emit("new_message", newMessage);
-
-    res.json({ message: "Saved + Email sent", data: newMessage });
-  } catch (error) {
-    res.status(500).send("Server error");
-  }
-});
-
 // ================= DELETE =================
 app.delete("/contact/:id", async (req, res) => {
   try {
