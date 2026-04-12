@@ -73,24 +73,20 @@ export const Contact = () => {
     try {
       const API_URL = import.meta.env.VITE_API_URL;
 
-      // ⏱ timeout controller (VERY IMPORTANT)
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 8000);
-
       const response = await fetch(`${API_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        signal: controller.signal,
       });
 
-      clearTimeout(timeout);
-
-      if (!response.ok) throw new Error("Request failed");
-
       const data = await response.json();
+
+      // ✅ IMPORTANT: check real backend success
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed");
+      }
 
       setSubmitStatus({
         type: "success",
@@ -99,17 +95,10 @@ export const Contact = () => {
 
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      if (err.name === "AbortError") {
-        setSubmitStatus({
-          type: "success",
-          message: "Message sent (email may take time).",
-        });
-      } else {
-        setSubmitStatus({
-          type: "error",
-          message: "Server error. Try again later.",
-        });
-      }
+      setSubmitStatus({
+        type: "error",
+        message: "Message failed. Please try again.",
+      });
     } finally {
       setIsLoading(false);
     }
