@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useState } from "react";
-
+import toast from "react-hot-toast";
 const contactInfo = [
   {
     icon: Mail,
@@ -88,17 +88,10 @@ export const Contact = () => {
         throw new Error(data.message || "Failed");
       }
 
-      setSubmitStatus({
-        type: "success",
-        message: "Message sent successfully!",
-      });
-
+      toast.success("Message sent successfully 🚀");
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      setSubmitStatus({
-        type: "error",
-        message: "Message failed. Please try again.",
-      });
+      toast.error("Something went wrong ❌");
     } finally {
       setIsLoading(false);
     }
@@ -185,7 +178,9 @@ export const Contact = () => {
                 type="submit"
                 size="lg"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2"
+                className={`w-full flex items-center justify-center gap-2 transition ${
+                  isLoading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">
@@ -198,24 +193,6 @@ export const Contact = () => {
                   </>
                 )}
               </Button>
-
-              {/* Status */}
-              {submitStatus.type && (
-                <div
-                  className={`flex items-center gap-3 p-4 rounded-xl border ${
-                    submitStatus.type === "success"
-                      ? "bg-green-500/10 border-green-500/30 text-green-400"
-                      : "bg-red-500/10 border-red-500/30 text-red-400"
-                  }`}
-                >
-                  {submitStatus.type === "success" ? (
-                    <CheckCircle className="w-5 h-5" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5" />
-                  )}
-                  <p className="text-sm">{submitStatus.message}</p>
-                </div>
-              )}
             </form>
           </div>
 
