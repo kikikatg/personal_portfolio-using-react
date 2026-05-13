@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
+  subject: String, // ✅ ADD THIS
   message: String,
 
-  // ✅ NEW FIELD (DO NOT BREAK EXISTING DATA)
   isRead: {
     type: Boolean,
     default: false,
@@ -16,5 +16,4 @@ const contactSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
 module.exports = mongoose.model("Contact", contactSchema);

@@ -3,11 +3,12 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navLinks = [
+  { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "#certifications", label: "Certifications" },
 ];
 
 export const Navbar = () => {
@@ -71,7 +72,9 @@ export const Navbar = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 transition-all duration-500 z-50 ${
-        isScrolled ? "glass-strong py-3 shadow-md" : "bg-slate-700 py-5"
+        isScrolled
+  ? "glass-strong py-3 shadow-lg backdrop-blur-xl"
+  : "bg-background/80 backdrop-blur-md py-5"
       }`}
     >
       <nav className="container mx-auto px-3 sm:px-4 lg:px-6 flex items-center justify-between">
@@ -88,10 +91,10 @@ export const Navbar = () => {
           <img
             src="/logo.png"
             alt="Kiros profile"
-            className="w-9 h-9 px- sm:h-12 sm:w-12 rounded-full object-cover border border-primary/40"
+            className="w-9 h-9 sm:h-12 sm:w-12 rounded-full object-cover border border-primary/40"
           />
           <span className="hidden lg:inline">
-            Kiros <span className="text-primary">.</span>
+           Kiros Asefa<span className="text-primary">.</span>
           </span>
         </a>
 
@@ -130,7 +133,6 @@ export const Navbar = () => {
             size="sm"
             onClick={() => {
               handleScrollTo("#contact");
-              setActiveSection("contact");
             }}
           >
             Contact Me
@@ -156,7 +158,7 @@ export const Navbar = () => {
 
       {/* MOBILE MENU */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong animate-fade-in">
+        <div className="md:hidden glass-strong backdrop-blur-xl border-t border-white/10 animate-fade-in">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-5">
             {navLinks.map((link, index) => {
               const isActive = activeSection === link.href.replace("#", "");
@@ -185,7 +187,7 @@ export const Navbar = () => {
             <Button
               onClick={() => {
                 handleScrollTo("#contact");
-                setActiveSection("contact");
+  
                 setIsMobileMenuOpen(false);
               }}
             >

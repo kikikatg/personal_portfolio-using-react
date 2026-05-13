@@ -1,40 +1,87 @@
-import { Briefcase } from "lucide-react";
+
 
 const experiences = [
   {
-    period: "2026 —for three months",
-    role: "Full Stack Developer (Project-Based)",
-    company: "Sheqlee Platform",
+    period: "2025 — Present",
+
+    role: "Final-Year CSE Student",
+
+    company: "Mekelle University",
+
     description:
-      "Developed a smart job and opportunity platform using React and Node.js. Designed responsive UI, implemented backend logic, and handled real-world application architecture.",
-    technologies: ["React", "Node.js", "MongoDB", "Tailwind"],
+      "Studying Computer Science and Engineering with a focus on software engineering, artificial intelligence, machine learning, and full-stack web development.",
+
+    technologies: [
+      "Software Engineering",
+      "AI",
+      "Machine Learning",
+      "Full Stack Development",
+    ],
+
     current: true,
   },
+
   {
-    period: "2026-for three months",
-    role: "Machine Learning Developer",
-    company: "Tigrigna Fake News Detection",
+    period: "2026",
+
+    role: "Full-Stack Developer Project",
+
+    company: "Sheqlee Opportunity Platform",
+
     description:
-      "Built an NLP-based system to detect fake news in Tigrigna language using machine learning techniques. Developed preprocessing pipeline and classification model.",
-    technologies: ["Python", "NLP", "Scikit-learn", "Streamlit"],
+      "Developed a modern full-stack opportunity platform with responsive frontend design, backend APIs, authentication systems, and scalable application architecture.",
+
+    technologies: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "REST APIs",
+      "Tailwind CSS",
+    ],
+
     current: false,
   },
+
   {
-    period: "2024 — 2025",
-    role: "AI Developer",
-    company: "Crop Disease Detection Project",
+    period: "2026",
+
+    role: "Machine Learning & NLP Project",
+
+    company: "Tigrigna Fake News Detection System",
+
     description:
-      "Developed a CNN-based model to detect crop diseases. Integrated the model with a user interface for real-time predictions to support agriculture.",
-    technologies: ["Python", "CNN", "TensorFlow", "Streamlit"],
+      "Built an AI-powered fake news detection system using NLP preprocessing pipelines, machine learning models, and real-time text classification techniques.",
+
+    technologies: [
+      "Python",
+      "NLP",
+      "Scikit-learn",
+      "FastAPI",
+      "Streamlit",
+    ],
+
     current: false,
   },
+
   {
-    period: "2024 — 2025",
-    role: "Frontend Developer",
-    company: "Academic & Personal Projects",
+    period: "2025",
+
+    role: "AI & Computer Vision Project",
+
+    company: "Crop Disease Detection System",
+
     description:
-      "Built multiple responsive web applications while learning modern frontend technologies and UI/UX design principles.",
-    technologies: ["HTML", "CSS", "JavaScript", "React"],
+      "Developed a CNN-based deep learning system for crop disease diagnosis with image classification and intelligent prediction capabilities.",
+
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "CNN",
+      "Deep Learning",
+      "Computer Vision",
+    ],
+
     current: false,
   },
 ];
@@ -49,19 +96,18 @@ export const Experience = () => {
         {/* HEADER */}
         <div className="max-w-3xl mb-16">
           <span className="text-md font-semibold tracking-widest uppercase text-indigo-400">
-            Experience
+            Experience & Education
           </span>
 
           <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6">
-            My journey of{" "}
+            My journey in{" "}
             <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              building real-world solutions
+             software engineering & artificial intelligence
             </span>
           </h2>
 
           <p className="text-muted-foreground text-lg leading-relaxed">
-            From web development to machine learning, I have worked on projects
-            that solve real-world problems and improve user experiences.
+            A timeline of my academic background, AI projects, and full-stack development experience focused on building scalable and impactful digital solutions.
           </p>
         </div>
 

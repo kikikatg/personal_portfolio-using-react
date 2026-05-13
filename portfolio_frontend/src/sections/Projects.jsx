@@ -4,61 +4,68 @@ import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 import { useState } from "react";
 const projects = [
   {
-    title: "Sheqlee Platform",
+    title: "Tigrigna Fake News Detection System",
     description:
-      "A smart job and opportunity platform connecting users with relevant opportunities using modern web technologies.",
+      "An AI-powered NLP system designed to detect fake news in the Tigrigna language using machine learning, text preprocessing, and real-time classification techniques.",
+
+    image: "/projects/fake_news_detection_UI.png",
+
+    tags: [
+      "Python",
+      "FastAPI",
+      "NLP",
+      "Scikit-learn",
+      "Machine Learning",
+      "Streamlit",
+    ],
+
+    link: "https://tigrigna-fake-news-detection-using.vercel.app/",
+
+    github:
+      "https://github.com/kikikatg/tigrigna_fake_news_detection_using_NLP",
+  },
+
+  {
+    title: "Sheqlee Opportunity Platform",
+
+    description:
+      "A full-stack platform that connects users with jobs, opportunities, and resources through a modern and responsive web application.",
+
     image: "/projects/sheqlee_1.png",
+
     tags: [
       "React",
       "Node.js",
       "MongoDB",
-      "Full Stack Development",
-      "Express",
-      " REST API",
-      " Web Application",
+      "Express.js",
+      "REST API",
+      "Tailwind CSS",
     ],
-    link: "#",
+
+    link: "YOUR_DEPLOYMENT_LINK",
+
     github: "https://github.com/kikikatg/sheqlee-project.git",
   },
 
-  // ✅ UPDATED PROJECT 2
   {
-    title: "Tigrigna Fake News Detection",
-    description:
-      "An NLP-based system that detects fake news in Tigrigna language using machine learning models and text processing techniques.",
-    image: "/projects/tigrigna-fake-news.png",
-    tags: ["Python", "NLP", "Scikit-learn", "Data Science", "Machine Learning"],
-    link: "#",
-    github:
-      "https://github.com/kikikatg/tigrigna_fake_news_detection_using_NLP",
-  },
+    title: "Crop Disease Detection System",
 
-  // ✅ UPDATED PROJECT 3
-  {
-    title: "Tigrigna NLP Interface",
     description:
-      "A user-friendly interface for interacting with the fake news detection model, allowing real-time text classification.",
-    image: "/projects/tigrigna-ui.png",
-    tags: ["Streamlit", "Python", "UI"],
-    link: "#",
-    github:
-      "https://github.com/kikikatg/tigrigna_fake_news_detection_using_NLP",
-  },
+      "A deep learning application that detects crop diseases using CNN models to support smart agriculture and early disease diagnosis.",
 
-  {
-    title: "Crop Disease Detection (ML)",
-    description:
-      "A machine learning project that detects crop diseases using CNN models to support agriculture.",
     image: "/projects/mini-project.png",
+
     tags: [
       "Python",
-      "CNN",
-      " Keras",
       "TensorFlow",
+      "CNN",
+      "Keras",
+      "Computer Vision",
       "Deep Learning",
-      "Machine Learning",
     ],
-    link: "#",
+
+    link: "YOUR_DEPLOYMENT_LINK",
+
     github:
       "https://github.com/kikikatg/Mini_project/tree/main/Corn-Disease-Detection-using-CNN-main",
   },
@@ -79,19 +86,18 @@ export const Projects = () => {
           <span className="text-md font-semibold tracking-widest uppercase text-indigo-400">
             My Projects
           </span>
-
-          <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6">
-            Projects that{" "}
-            <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              solve real problems
-            </span>
-          </h2>
+<h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6">
+  Building{" "}
+  <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+    intelligent systems
+  </span>{" "}
+  & scalable applications
+</h2>
 
           <p className="text-muted-foreground text-lg leading-relaxed">
-            A collection of my work combining{" "}
-            <span className="text-white font-medium">web development</span> and{" "}
-            <span className="text-white font-medium">machine learning</span> to
-            build impactful solutions.
+            A selection of projects focused on{" "}
+            <span className="text-white font-medium">artificial intelligence,full-stack development</span> and{" "}
+            <span className="text-white font-medium">scalable digital solutions built</span> to solve real-world challenges.
           </p>
         </div>
 

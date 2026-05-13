@@ -6,17 +6,18 @@ import { TypingName } from "@/components/TypingName";
 
 const skills = [
   "React",
+  "FastAPI",
   "JavaScript",
-  "HTML",
-  "CSS",
+  "Tailwind CSS",
   "Python",
   "Machine Learning",
   "NLP",
-  "Jupyter Notebook",
-  "Google Colab",
-  "UI/UX Design",
-  "Tailwind CSS",
-  "Git",
+  "TensorFlow",
+  "MongoDB",
+  "Git & GitHub",
+  "Computer Vision",
+  "REST APIs",
+  "SQLite",
 ];
 export const Hero = () => {
   const scrollTo = (id) => {
@@ -54,43 +55,42 @@ export const Hero = () => {
             <div>
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-md text-indigo-400">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Software Engineer • Full Stack Developer
+                AI Engineer • Full Stack Developer
               </span>
             </div>
 
             {/* HEADLINE */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-6xl font-extrabold leading-tight">
-                Building{" "}
-                <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  modern web
-                </span>
-                <br />
-                experiences that
-                <br />
-                <span className="font-serif italic font-normal text-white">
-                  stand out.
-                </span>
-              </h1>
+  Building{" "}
+  <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+    intelligent digital solutions
+  </span>
+  <br />
+  powered by
+  <br />
+  <span className="font-serif italic font-normal text-white">
+    AI & modern technologies.
+  </span>
+</h1>
               <p className="text-lg text-muted-foreground max-w-lg">
                 Hi, I'm{" "}
                 <span className="text-primary font-semibold inline-block min-w-[110px]">
                   <TypingName text="Kiros Asefa" />
                 </span>{" "}
-                — a software engineer focused on building fast, scalable, and
-                user-friendly web applications.
+                — a final-year Computer Science and Engineering student focused on building scalable web applications and AI-powered systems that solve real-world problems.
               </p>
             </div>
 
             {/* CTA */}
             <div className="flex flex-wrap gap-4">
               <Button size="lg" onClick={() => scrollTo("#contact")}>
-                Contact Me <ArrowRight className="w-5 h-5" />
+                Hire Me <ArrowRight className="w-5 h-5" />
               </Button>
 
               <a
-                href="/Kiros_Asefa_CV.pdf"
-                download="Kiros_Asefa_CV.pdf"
+                href="/CV.pdf"
+                download="CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
@@ -101,7 +101,16 @@ export const Hero = () => {
                 </AnimatedBorderButton>
               </a>
             </div>
-
+<a
+  href="/All-Certificates_merged.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block"
+>
+  <AnimatedBorderButton>
+    Certificates
+  </AnimatedBorderButton>
+</a>
             {/* SOCIALS */}
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground">Follow me:</span>
@@ -112,7 +121,6 @@ export const Hero = () => {
                   icon: FaLinkedin,
                   href: "https://www.linkedin.com/in/kiros-asefa/",
                 },
-                { icon: FaTwitter, href: "https://twitter.com/kikikatg" },
                 { icon: FaTelegram, href: "https://t.me/kikikatg" },
               ].map((social, idx) => (
                 <a
@@ -144,13 +152,11 @@ export const Hero = () => {
                 {/* Optional simple badge */}
                 {/* Stats Badge */}{" "}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  {" "}
-                  <div className="text-2xl font-bold text-primary">5+</div>{" "}
-                  <div className="text-xs text-muted-foreground">
-                    {" "}
-                    Years Exp.{" "}
-                  </div>{" "}
-                </div>
+  <div className="text-2xl font-bold text-primary">4+</div>
+  <div className="text-xs text-muted-foreground">
+    Projects Built
+  </div>
+</div>
                 <div className="absolute -bottom-3 -right-3 glass rounded-xl px-3 py-2 border border-primary/20">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-float animation-delay-500 animate-pulse" />
@@ -167,7 +173,7 @@ export const Hero = () => {
         {/* SKILLS */}
         <div className="mt-20">
           <p className="text-md text-indigo-400 text-muted-foreground mb-6 text-center">
-            Technologies I work with
+           Technologies & Tools
           </p>
 
           {/* Moving skills */}
@@ -196,7 +202,7 @@ export const Hero = () => {
           }}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
         >
-          <span className="text-xs uppercase text-teal-300 *:tracking-wider">
+          <span className="text-xs uppercase text-teal-300 tracking-wider">
             Scroll
           </span>
           <ChevronDown className="w-6 h-6 animate-bounce text-lime-400" />

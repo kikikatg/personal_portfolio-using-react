@@ -4,25 +4,27 @@ import { TypingName } from "@/components/TypingName";
 const highlights = [
   {
     icon: Code2,
-    title: "Clean Code",
+    title: "Clean Architecture",
     description:
-      "Writing maintainable, scalable solutions with best practices.",
+      "Developing scalable and maintainable applications using modern engineering practices.",
   },
   {
     icon: Rocket,
     title: "Performance",
     description:
-      "Building fast, optimized applications with smooth user experience.",
+      "Optimizing applications for speed, responsiveness, and smooth user experiences.",
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "Working effectively in teams to deliver impactful solutions.",
+    title: "Team Collaboration",
+    description:
+      "Collaborating effectively in teams to design and deliver impactful solutions.",
   },
   {
     icon: Lightbulb,
-    title: "Innovation",
-    description: "Exploring modern technologies in Web, ML, and AI.",
+    title: "AI Innovation",
+    description:
+      "Building intelligent systems using Machine Learning, NLP, and modern AI technologies.",
   },
 ];
 
@@ -40,50 +42,35 @@ export const About = () => {
 
             {/* HEADER */}
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Turning ideas into{" "}
+              Building intelligent{" "}
               <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                real-world solutions
+                digital experiences
               </span>
               <br />
-              with code & intelligence.
+              with AI & modern web technologies.
             </h2>
 
             {/* DESCRIPTION */}
             <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
               <p className="leading-relaxed">
-                Hi, I'm{" "}
-                <span className="text-green-400 font-semibold inline-block min-w-[110px]">
-                  <TypingName text="Kiros              Asefa  " />
-                </span>
-                , Computer Science student and passionate developer focused on
-                building modern web applications and intelligent systems
-              </p>
+  Hi, I'm{" "}
+  <span className="text-green-400 font-semibold inline-block min-w-[110px]">
+    <TypingName text="Kiros Asefa" />
+  </span>
+  , a final-year Computer Science and Engineering student at Mekelle University focused on full-stack development, artificial intelligence, and intelligent system design.
+</p>
+
+              
+            <p>
+  I develop responsive web applications using modern frontend and backend technologies while also building AI-powered systems with Machine Learning, NLP, and Computer Vision to solve real-world problems.
+</p>
 
               <p>
-                Computer Science student and passionate developer focused on
-                building modern web applications and intelligent systems
-              </p>
-              <p>
-                I specialize in{" "}
-                <span className="text-white font-medium">
-                  React, JavaScript, HTML, and Tailwind CSS
-                </span>{" "}
-                for frontend development, while also working with{" "}
-                <span className="text-white font-medium">
-                  Node.js, Express.js, and MongoDB
-                </span>{" "}
-                on the backend. Additionally, I build intelligent systems using{" "}
-                <span className="text-white font-medium">
-                  Python, Machine Learning, and NLP
-                </span>{" "}
-                to create smart, scalable, and real-world solutions.
-              </p>
-
-              <p>
-                My goal is to combine software engineering with AI to solve real
-                problems — especially in areas like agriculture, automation, and
-                intelligent systems.
-              </p>
+  My work focuses on creating scalable and impactful solutions in areas such as agriculture, automation, and intelligent information systems.
+</p>
+<p>
+  I’m continuously improving my expertise in software engineering, backend architecture, and AI deployment to build reliable and user-focused digital products.
+</p>
             </div>
 
             {/* MISSION BOX */}
@@ -93,16 +80,15 @@ export const About = () => {
 
               <div className="relative glass rounded-2xl p-6 border border-primary/20">
                 <p className="text-lg italic font-medium text-white leading-relaxed">
-                  “My mission is to build impactful digital solutions that
-                  combine{" "}
+                  “My goal is to develop intelligent and scalable software solutions that combine{" "}
                   <span className="text-green-400 font-semibold">
-                    software engineering
+                   modern engineering principles 
                   </span>{" "}
-                  and{" "}
+                  with{" "}
                   <span className="text-green-400 font-semibold">
                     artificial intelligence
                   </span>{" "}
-                  to solve real-world problems.”
+                  to create meaningful real-world impact.”
                 </p>
               </div>
             </div>
@@ -133,5 +119,6 @@ export const About = () => {
         </div>
       </div>
     </section>
+    
   );
 };

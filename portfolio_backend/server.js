@@ -52,23 +52,24 @@ app.get("/contact", async (req, res) => {
 // ================= POST CONTACT (FIXED) =================
 app.post("/contact", async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    console.log("Incoming contact request:", req.body); // ✅ HERE ONLY
+
+    const { name, email, subject, message } = req.body;
 
     const newMessage = await Contact.create({
       name,
       email,
+      subject,
       message,
       isRead: false,
     });
 
-    // 🚀 RESPOND INSTANTLY
     res.status(200).json({
       success: true,
       message: "Saved successfully",
       data: newMessage,
     });
 
-    // 🚀 SEND EMAIL (NON-BLOCKING, FAST)
     resend.emails
       .send({
         from: "Portfolio <onboarding@resend.dev>",
@@ -78,11 +79,12 @@ app.post("/contact", async (req, res) => {
           <h2>New Contact Message</h2>
           <p><b>Name:</b> ${name}</p>
           <p><b>Email:</b> ${email}</p>
+          <p><b>Subject:</b> ${subject}</p>
           <p><b>Message:</b> ${message}</p>
         `,
       })
-      .then(() => console.log("✅ Email sent via Resend"))
       .catch((err) => console.log("❌ Resend error:", err.message));
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });

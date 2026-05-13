@@ -3,7 +3,7 @@ import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
-import { Testimonials } from "@/sections/Testimonials";
+import { Certifications } from "@/sections/Certifications";
 import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
 import { Skills } from "@/sections/Skills";
@@ -18,7 +18,7 @@ const Home = () => {
         <Skills />
         <Projects />
         <Experience />
-        <Testimonials />
+        <Certifications />
         <Contact />
       </main>
       <Footer />

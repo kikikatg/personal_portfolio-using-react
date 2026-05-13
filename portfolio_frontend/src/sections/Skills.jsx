@@ -4,29 +4,53 @@ const skillCategories = [
   {
     title: "Frontend Development",
     icon: Code2,
-    skills: ["React", "JavaScript", "HTML", "CSS", "vite", "Tailwind CSS"],
+    skills: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "TypeScript",
+      "Responsive Design",
+      "Framer Motion",
+    ],
   },
+
   {
     title: "Backend & Database",
     icon: Database,
-    skills: ["Node.js", "MongoDB", "Express.js"],
+    skills: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST APIs",
+      "SQL",
+    ],
   },
+
   {
-    title: "Machine Learning & NLP",
+    title: "AI & Machine Learning",
     icon: Brain,
     skills: [
       "Python",
-      "Machine Learning",
+      "TensorFlow",
+      "Scikit-learn",
       "NLP",
+      "Computer Vision",
       "CNN",
-      "Jupyter Notebook",
-      "Google Colab",
     ],
   },
+
   {
-    title: "Tools & Others",
+    title: "Tools & Deployment",
     icon: Wrench,
-    skills: ["Git", "GitHub", "UI/UX Design"],
+    skills: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Vercel",
+      "Render",
+      "Postman",
+    ],
   },
 ];
 
@@ -41,24 +65,23 @@ export const Skills = () => {
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-md font-semibold tracking-widest uppercase text-indigo-400">
-            My Skills
+           Technical Expertise
           </span>
 
           <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6">
-            Technologies I use to{" "}
+            Technologies I use to build{" "}
             <span className="bg-gradient-to-r from-primary via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              build and innovate
+             scalable web & AI solutions
             </span>
           </h2>
 
           <p className="text-muted-foreground text-lg leading-relaxed">
-            I combine{" "}
+            My technical stack combines{" "}
             <span className="text-white font-medium">
-              modern web development
+              modern frontend and backend development
             </span>{" "}
             with{" "}
-            <span className="text-white font-medium">machine learning</span> to
-            create scalable and intelligent applications.
+            <span className="text-white font-medium">artificial intelligence</span> technologies to build scalable, high-performance, and user-focused applications.
           </p>
         </div>
 
