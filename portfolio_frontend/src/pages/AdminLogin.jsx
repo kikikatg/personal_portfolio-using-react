@@ -21,7 +21,7 @@ export const AdminLogin = () => {
       setError("Wrong password. Try again!");
     }
   };
-
+console.log("ADMIN PASSWORD:", import.meta.env.VITE_ADMIN_PASSWORD);
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
       <form
