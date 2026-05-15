@@ -142,36 +142,50 @@ export const Admin = () => {
 
   // ================= DELETE =================
   const deleteMessage = async () => {
-    if (!deleteTarget) return;
+  if (!deleteTarget) return;
 
-    try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/contact/${deleteTarget}`,
-        { method: "DELETE" },
-      );
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/contact/${deleteTarget}`,
+      {
+        method: "DELETE",
+      },
+    );
 
-      if (!res.ok) throw new Error();
-
-      // 🔥 FIX: REMOVE FROM UI IMMEDIATELY
-      setMessages((prev) => prev.filter((m) => m._id !== deleteTarget));
-
-      setNotifications((prev) => [
-        {
-          text: `Deleted a message`,
-          time: new Date().toLocaleTimeString(),
-        },
-        ...prev,
-      ]);
-
-      setDeleteTarget(null);
-      setSelectedMessage(null);
-
-      fetchUnreadCount();
-    } catch {
-      setError("Delete failed");
+    if (!res.ok) {
+      throw new Error("Delete failed");
     }
-  };
 
+    // REMOVE IMMEDIATELY
+    setMessages((prev) =>
+      prev.filter((msg) => msg._id !== deleteTarget),
+    );
+
+    // REMOVE SELECTION
+    if (selectedMessage?._id === deleteTarget) {
+      setSelectedMessage(null);
+    }
+
+    // REMOVE MODAL
+    setDeleteTarget(null);
+
+    // UPDATE NOTIFICATIONS
+    setNotifications((prev) => [
+      {
+        text: "Message deleted successfully",
+        time: new Date().toLocaleTimeString(),
+      },
+      ...prev,
+    ]);
+
+    // UPDATE UNREAD COUNT
+    fetchUnreadCount();
+
+  } catch (err) {
+    console.log(err);
+    setError("Delete failed");
+  }
+};
   // ================= REPLY =================
   const handleReply = () => {
     if (!selectedMessage) return;
@@ -251,20 +265,35 @@ Reply from Admin Panel`,
               <div className="grid md:grid-cols-2 gap-6">
                 {/* LIST */}
                 <div className="space-y-3">
-                  {messages.map((msg) => (
+                  {messages.length === 0 ? (
+  <div className="bg-white/5 p-6 rounded text-center text-gray-400">
+    No messages found
+  </div>
+) : (
+  messages.map((msg) => (
                     <div
                       key={msg._id}
                       onClick={() => openMessage(msg)}
-                      className="p-4 rounded bg-white/5 hover:bg-white/10 cursor-pointer"
+                      className={`p-4 rounded cursor-pointer transition border ${
+  selectedMessage?._id === msg._id
+    ? "bg-blue-600/30 border-blue-500"
+    : "bg-white/5 border-white/10 hover:bg-white/10"
+}`}
                     >
-                      <p className="flex items-center gap-2">
-                        <FaUser /> {msg.name}
-                      </p>
+                      <p className="flex items-center gap-2 font-medium">
+  <FaUser />
+  {msg.name}
+
+  {!msg.isRead && (
+    <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+  )}
+</p>
                       <p className="text-sm text-gray-400 flex gap-2">
                         <FaEnvelope /> {msg.email}
                       </p>
                     </div>
-                  ))}
+                  ))
+                )}
                 </div>
 
                 {/* DETAILS */}
@@ -278,8 +307,12 @@ Reply from Admin Panel`,
                         <FaEnvelope /> {selectedMessage.email}
                       </p>
                       <p className="flex gap-2 mt-4">
-                        <FaCommentDots /> {selectedMessage.message}
-                      </p>
+  <FaEnvelope /> Subject: {selectedMessage.subject}
+</p>
+
+<p className="flex gap-2 mt-4">
+  <FaCommentDots /> {selectedMessage.message}
+</p>
                       <p className="flex gap-2 mt-4 text-xs">
                         <FaCalendarAlt />
                         {new Date(selectedMessage.createdAt).toLocaleString()}

@@ -69,7 +69,7 @@ app.post("/contact", async (req, res) => {
       message: "Saved successfully",
       data: newMessage,
     });
-
+io.emit("new_message", newMessage);
     resend.emails
       .send({
         from: "Portfolio <onboarding@resend.dev>",

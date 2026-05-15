@@ -9,7 +9,7 @@ export const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (password === "admin123") {
+    if (password === import.meta.env.VITE_ADMIN_PASSWORD) {
       localStorage.setItem("isAdmin", "true");
       setError("");
       navigate("/admin");

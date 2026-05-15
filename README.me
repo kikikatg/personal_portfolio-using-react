@@ -1,31 +1,51 @@
-# 🌐 Personal Portfolio — Full Stack (Real-Time)
+# 🌐 Full-Stack Portfolio Website with Real-Time Admin Dashboard
 
 <p align="center">
-  <b>A modern full-stack portfolio with real-time messaging, admin dashboard, and live notifications.</b>
+  <b>
+    A modern full-stack portfolio platform featuring real-time messaging,
+    admin dashboard management, live notifications, and responsive UI design.
+  </b>
 </p>
 
 ---
 
 ## 🚀 Live Demo
 
-<p align="center">
+### 🌍 Frontend Application
 
-🌍 <b>Frontend:</b>
-👉https://kiros-portfolio-v2.vercel.app/
+👉 https://kiros-portfolio-v2.vercel.app/
 
-</p>
+### ⚙️ Backend API
+
+👉 https://portfolio-backend-9jbg.onrender.com/
 
 ---
 
-## 📸 Screenshots
+## 📸 Application Screenshots
 
-### 🖥 Portfolio UI
+### 🖥 Home Page
 
-![Portfolio Screenshot](./public/Screenshot1.png)
+![Home Page](./public/home.png)
+
+---
+
+### 👨‍💻 About Section
+
+![About Section](./public/about.png)
+
+---
+
+### 🚀 Projects Section
+
+![Projects Section](./public/projects.png)
+
+---
+
+
 
 ### 🛠 Admin Dashboard
 
-![Admin Screenshot](./public/Screenshot2.png)
+![Admin Dashboard](./public/admin.png)
 
 ---
 
@@ -33,42 +53,75 @@
 
 ### 👨‍💻 Portfolio Website
 
-* Modern and responsive UI
-* Clean sections: About, Skills, Projects
-* Fully functional contact form
+- Modern responsive user interface
+- Clean portfolio sections
+- Smooth scrolling navigation
+- Interactive animations
+- Mobile-friendly design
+- Dark/Light mode support
 
 ---
 
 ### 📩 Contact System
 
-* Users can send messages directly
-* Messages stored securely in MongoDB
-* Email notifications via Nodemailer
+- Functional contact form
+- Real-time message submission
+- MongoDB message storage
+- Email notifications using Resend API
+- Form validation and error handling
 
 ---
 
 ### 🛠 Admin Dashboard
 
-* View all incoming messages
-* Delete messages
-* Mark messages as read
-* Dynamic unread counter
+- View all incoming messages
+- Delete messages
+- Mark messages as read
+- Dynamic unread message counter
+- Real-time updates without refreshing
 
 ---
 
 ### 🔔 Real-Time Features
 
-* Live updates using Socket.IO
-* Instant message notifications
-* Real-time delete synchronization
+- Live notifications using Socket.IO
+- Instant message synchronization
+- Real-time delete updates
+- Admin dashboard auto-refresh
 
 ---
 
-### 📧 Reply System
+### 📧 Communication Features
 
-* One-click reply via Gmail
-* Pre-filled subject and message body
-* Smooth user interaction
+- One-click Gmail reply system
+- Quick contact integration
+- Professional contact management
+
+---
+
+## 💡 Key Highlights
+
+- Full-stack MERN architecture
+- Real-time communication system
+- Responsive modern UI
+- RESTful API integration
+- MongoDB database management
+- Socket.IO real-time synchronization
+- Cloud deployment integration
+- Secure environment variable handling
+
+---
+
+## 🧠 Skills Demonstrated
+
+- Full-Stack Web Development
+- REST API Development
+- Real-Time Communication
+- Database Design & Management
+- Responsive UI/UX Design
+- State Management
+- Cloud Deployment
+- Environment Configuration
 
 ---
 
@@ -76,85 +129,128 @@
 
 ### 🎨 Frontend
 
-* React (Vite)
-* Tailwind CSS
-* React Icons
-* Socket.IO Client
+- React.js
+- Vite
+- Tailwind CSS
+- React Icons
+- Socket.IO Client
+- Axios
+- React Hot Toast
 
 ---
 
-### ⚙ Backend
+### ⚙️ Backend
 
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* Socket.IO
-* Nodemailer
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Socket.IO
+- Resend API
+- CORS
+- dotenv
+
+---
+
+## 🏗 System Architecture
+
+```text
+Frontend (React + Vite)
+        ↓
+REST API Requests
+        ↓
+Node.js + Express Backend
+        ↓
+MongoDB Database
+        ↓
+Socket.IO Real-Time Events
+        ↓
+Admin Dashboard Updates
+```
+
+---
+
+## 🔌 API Features
+
+- RESTful Express API
+- CRUD operations
+- Real-time socket communication
+- Contact message management
+- Read/unread message tracking
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 personal_portfolio_project/
 │
 ├── backend/        # Express + MongoDB API
-├── frontend/       # React (Vite) App
+├── frontend/       # React + Vite Application
+├── public/         # Images and screenshots
 └── README.md       # Project Documentation
 ```
 
 ---
 
-## ⚙️ Installation (Local Setup)
+## ⚙️ Installation & Local Setup
 
 ### 1️⃣ Clone Repository
 
-```
+```bash
 git clone https://github.com/kikikatg/personal_portfolio-using-react.git
+
 cd personal_portfolio_project
 ```
 
 ---
 
-### 2️⃣ Backend Setup
+## ⚙️ Backend Setup
 
-```
+### Navigate to backend
+
+```bash
 cd backend
+```
+
+### Install dependencies
+
+```bash
 npm install
 ```
 
-Create `.env` file:
 
-```
-MONGO_URI=your_mongodb_uri
-EMAIL_USER=your_email
-EMAIL_PASS=your_app_password
-```
+### Start backend server
 
-Run backend:
-
-```
+```bash
 npm start
 ```
 
 ---
 
-### 3️⃣ Frontend Setup
+## 🎨 Frontend Setup
 
-```
+### Navigate to frontend
+
+```bash
 cd frontend
+```
+
+### Install dependencies
+
+```bash
 npm install
 ```
 
-Create `.env` file:
+### Create `.env` file
 
-```
+```env
 VITE_API_URL=http://localhost:5000
 ```
 
-Run frontend:
+### Start frontend
 
-```
+```bash
 npm run dev
 ```
 
@@ -162,29 +258,52 @@ npm run dev
 
 ## 🔐 Environment Variables
 
-| Variable     | Description               |
-| ------------ | ------------------------- |
-| MONGO_URI    | MongoDB connection string |
-| EMAIL_USER   | Gmail address             |
-| EMAIL_PASS   | Gmail app password        |
-| VITE_API_URL | Backend API base URL      |
+| Variable         | Description                  |
+| ---------------- | ---------------------------- |
+| MONGO_URI        | MongoDB connection string    |
+| RESEND_API_KEY   | Resend email API key         |
+| EMAIL_USER       | Email receiver address       |
+| PORT             | Backend server port          |
+| VITE_API_URL     | Frontend backend API URL     |
+
+---
+
+## ☁️ Deployment
+
+| Service   | Platform        |
+| ----------|---------------- |
+| Frontend  | Vercel          |
+| Backend   | Render          |
+| Database  | MongoDB Atlas   |
 
 ---
 
 ## 🎯 Future Improvements
 
-* 🔔 Push notifications
-* 💬 Admin chat system (real conversation)
-* 📊 Analytics dashboard
-* 🔐 Authentication (JWT-based login)
+- 🔐 JWT Authentication
+- 💬 Real-time admin chat system
+- 📊 Analytics dashboard
+- 🔔 Push notifications
+- 📱 Progressive Web App (PWA)
+- 🌍 Multi-language support
 
 ---
 
 ## 👤 Author
 
-**Kiros Asefa**
-🎓 Computer Science & Engineering Student
-💡 Passionate about Full-Stack Development
+### Kiros Asefa
+
+🎓 Computer Science & Engineering Student  
+💻 Full-Stack Developer & AI Enthusiast  
+🚀 Passionate about building scalable real-world applications
+
+---
+
+## 🌐 Connect With Me
+
+- GitHub: https://github.com/kikikatg
+- LinkedIn: https://www.linkedin.com/in/kiros-asefa/
+- Portfolio: https://kiros-portfolio-v2.vercel.app/
 
 ---
 
@@ -192,8 +311,15 @@ npm run dev
 
 If you like this project:
 
-👉 Give it a **star ⭐ on GitHub**
-👉 Share it with others
+- Give it a ⭐ on GitHub
+- Share it with others
+- Follow for future projects
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
 
 ---
 
